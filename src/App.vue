@@ -42,7 +42,6 @@
           color="background"
           style="border-radius: 20px"
         >
-          <AppBar />
           <router-view />
         </v-card>
       </div>
@@ -53,7 +52,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { AppRoute } from "@/utils/enums";
-import AppBar from "./components/AppBar.vue";
 
 const drawer = ref(true);
 const rail = ref(false);
