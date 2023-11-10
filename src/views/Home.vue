@@ -1,6 +1,10 @@
 <template>
   <HeaderComponent @extracted-data="onExcelLoad($event)" />
-  <TransformedTable :json-header="jsonHeader" :json-items="jsonItems" />
+  <TransformedTable
+    v-if="jsonToTable"
+    :json-header="jsonToTable[0]"
+    :json-items="jsonToTable.slice(1)"
+  />
 </template>
 
 <script setup lang="ts">
@@ -8,11 +12,12 @@ import { ref } from "vue";
 import HeaderComponent from "@/components/HeaderComponent.vue";
 import TransformedTable from "@/components/TransformedTable.vue";
 
-const jsonHeader = ref();
-const jsonItems = ref();
+const jsonToTable = ref();
+const jsonData = ref();
 
 const onExcelLoad = (eventReturn: any) => {
-  jsonHeader.value = eventReturn.jsonHeader;
-  jsonItems.value = eventReturn.jsonItems;
+  jsonToTable.value = eventReturn.tableData;
+  jsonData.value = eventReturn.jsonData;
+  console.log(eventReturn.jsonData);
 };
 </script>

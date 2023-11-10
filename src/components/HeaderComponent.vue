@@ -42,11 +42,10 @@ const onChange = (event: any) => {
     const bufferArray = e?.target.result;
     const wb = read(bufferArray, { type: "buffer" });
     const ws = wb.Sheets[wb.SheetNames[0]];
-    const headers = utils.sheet_to_json(ws, { header: 1 });
-    const jsonHeader = headers[0];
-    const jsonItems = headers.slice(1);
+    const tableData = utils.sheet_to_json(ws, { header: 1 });
+    const jsonData = utils.sheet_to_json(ws);
 
-    emit("extractedData", { jsonHeader, jsonItems });
+    emit("extractedData", { tableData, jsonData });
   };
   fileReader.readAsArrayBuffer(input.value);
 };
